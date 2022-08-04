@@ -1,27 +1,31 @@
 #![allow(unused)]
 
-struct User {
-    username: String,
-    email: String,
-    age: u16,
-    active: bool,
-    sign_in_count: u64
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(State),
+}
+#[derive(Debug)]
+enum State{
+    Alabama,
+    California
 }
 
-fn main(){
-    let user1 = User{
-        email: String::from("user1@example.com"),
-        username: String::from("user1"),
-        age: 20,
-        active:true,
-        sign_in_count:3
-    };
+fn value_in_cents(coin: Coin) -> u32 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(state) => {
+            println!("{:?}",state);
+            25
+        },
+    }
+}
 
-    let user2 = User{
-        username: String::from("user2"),
-        email: String::from("user2@example.com"),
-        ..user1
-    };
-
-    println!("{}", user1.username)
+fn main() {
+    let c = Coin::Quarter(State::California);
+    let value = value_in_cents(c);
+    println!("{}", value);
 }
