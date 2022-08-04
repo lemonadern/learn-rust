@@ -1,18 +1,27 @@
-fn main() {
-    let hw = String::from("Hello World");
-    let hi = String::from("hi");
+#![allow(unused)]
 
-    println!("{}", first_word(&hw));
-    println!("{}", first_word(&hi));
+struct User {
+    username: String,
+    email: String,
+    age: u16,
+    active: bool,
+    sign_in_count: u64
 }
 
-fn first_word(s: &String) -> &str {
-    let bytes = s.as_bytes();
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[..i];
-        }
-    }
+fn main(){
+    let user1 = User{
+        email: String::from("user1@example.com"),
+        username: String::from("user1"),
+        age: 20,
+        active:true,
+        sign_in_count:3
+    };
 
-    &s[..]
+    let user2 = User{
+        username: String::from("user2"),
+        email: String::from("user2@example.com"),
+        ..user1
+    };
+
+    println!("{}", user1.username)
 }
