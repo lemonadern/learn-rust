@@ -5,17 +5,36 @@ struct Rectangle {
     height: u32,
 }
 
-fn main() {
-    let w = 100;
-    let h = 50;
-    let r = Rectangle {
-        width: w,
-        height: h,
-    };
-    println!("{}", area(&r));
-    println!("{:#?}", r);
+impl Rectangle{
+    fn area(&self)->u32{
+        self.width*self.height
+    }
+    fn can_hold(&self, other:&Rectangle)->bool{
+        self.width > other.width && self.height>other.height
+    }
 }
 
-fn area(rectangle: &Rectangle) -> u32 {
-    rectangle.height * rectangle.width
+fn main() {
+    let r = Rectangle {
+        width: 100,
+        height: 50,
+    };
+     let r2 = Rectangle{
+        width:90,
+        height:30
+    };
+
+let r3 = Rectangle{
+        width:100,
+        height:30
+    };
+
+    println!("{}", r.area());
+    
+    println!("r is {:#?}", r);
+    println!("r2 is {:#?}", r2);
+    println!("r3 is {:#?}", r3);
+
+    println!("`r` can hold `r2` ? {}", r.can_hold(&r2));
+    println!("`r` can hold `r3` ? {}", r.can_hold(&r3));
 }
