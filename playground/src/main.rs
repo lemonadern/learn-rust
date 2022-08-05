@@ -1,25 +1,18 @@
 #![allow(unused)]
 
-fn plus_one(n: Option<i32>) -> Option<i32> {
-    match n {
-        Some(i) => Some(i + 1),
-        None => None,
-    }
-}
-
 fn main() {
-    let five = Some(5);
-    let six = plus_one(five);
-    let none = plus_one(None);
+    let v: Vec<i32> = vec![1, 2, 3, 4, 5];
 
-    let some_u8_value = Some(0u8);
-    match some_u8_value{
-        Some(3)=>println!("three"),
-        _=>()
-    }
-    
-    if let Some(3)= some_u8_value {
-        println!("three");
-    }
+    let first = v.get(0);
+    let sixth = v.get(5);
 
+    fn log(e: Option<&i32>) {
+        match e {
+            None => println!("No Element."),
+            Some(e) => println!("This is {:?}.", e),
+        }
+    }
+    log(first);
+
+    log(sixth);
 }
