@@ -7,8 +7,9 @@ use std::collections::HashMap;
 fn main() {
     let v = vec![1, 3, 9, 2, 7, 3, 5, 6, 7, 8, 8, 3, 8, 9];
 
-    println!("{}", mean(&v));
-    println!("{}", mode(&v));
+    println!("mean  : {}", mean(&v));
+    println!("median: {}", median(&v));
+    println!("mode  : {}", mode(&v));
 }
 
 fn mean(v: &Vec<i32>) -> f64 {
@@ -19,7 +20,19 @@ fn mean(v: &Vec<i32>) -> f64 {
     sum / (v.len() as f64)
 }
 
-fn median() {}
+fn median(v:&Vec<i32>)->i32 {
+    // let mut s = Vec::new();
+    // for i in v { s.push(i); }
+    // s.sort();
+    // **s.get(s.len()/2).unwrap()
+
+    let mut sorted = vec![];
+    for x in v {
+        sorted.push(x);
+    }
+    sorted.sort();
+    **sorted.get(sorted.len()/2).unwrap()
+}
 
 fn mode(v: &Vec<i32>) -> i32 {
     let mut hash_map = HashMap::new();
