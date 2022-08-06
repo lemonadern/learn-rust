@@ -4,9 +4,23 @@
 // UTF-8エンコードに関する詳細を心に留めておいてください！
 
 fn main() {
-    let s1=String::from("first");
-    let s2 =String::from("apple");
-    println!("Hello, world!");
+    let s1 = String::from("first");
+    let s2 = String::from("apple");
+
+    println!("{}:{}", s1, pigganize(&s1));
+    println!("{}:{}", s2, pigganize(&s2));
 }
 
-// fn pigganize(s: &String)-> String{}
+fn pigganize(s: &String) -> String {
+    let mut p = String::from(s);
+    match s.chars().nth(0).unwrap() {
+        'a' | 'i' | 'u' | 'e' | 'o' => {
+            p.push_str("-hay");
+        }
+        _ => {
+            let c = p.remove(0);
+            p = p.to_string() + "-" + &c.to_string() + "ay";
+        }
+    }
+    p
+}
