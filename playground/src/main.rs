@@ -17,3 +17,14 @@ fn main() {
         }
     };
 }
+
+#[test]
+fn it_works_everywhere() {
+    assert_eq!(2 + 2, 4);
+}
+
+#[cfg(feature = "learning")]
+#[test]
+fn it_is_learning_test() {
+    assert_eq!(2 + 2, 4);
+}
